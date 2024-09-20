@@ -1,0 +1,19 @@
+<svg width="61.000000" height="40.000000" viewBox="0 0 61 40" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip4_1110">
+			<rect id="Frame" rx="-0.500000" width="60.000000" height="39.000000" transform="translate(0.500000 0.500000)" fill="white" fill-opacity="0"/>
+		</clipPath>
+	</defs>
+	<rect id="Frame" rx="-0.500000" width="60.000000" height="39.000000" transform="translate(0.500000 0.500000)" fill="#FFFFFF" fill-opacity="0"/>
+	<g clip-path="url(#clip4_1110)">
+		<path id="Vector" d="M23.85 10.12L23.85 14.61L20.08 14.61L20.08 11.99L12.23 5.51L4.77 11.68L4.77 36.79L20.96 36.79L20.96 40L0 40L0 10.12L12.25 0L23.85 10.12Z" fill="#F0BA4E" fill-opacity="1.000000" fill-rule="nonzero"/>
+		<path id="Vector" d="M7.35 15.8L23.85 15.8L23.85 20L7.35 20L7.35 15.8Z" fill="#C9CFCC" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="Vector" d="M7.35 23.13L23.85 23.13L23.85 27.53L11.92 27.53L11.92 30.19L23.85 30.19L23.85 34.41L7.35 34.41L7.35 23.13Z" fill="#C9CFCC" fill-opacity="1.000000" fill-rule="nonzero"/>
+		<path id="Vector" d="M44.5 15.8L61 15.8L61 20L44.5 20L44.5 15.8Z" fill="#C9CFCC" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="Vector" d="M44.5 23.13L61 23.13L61 27.53L49.07 27.53L49.07 30.19L61 30.19L61 34.41L44.5 34.41L44.5 23.13Z" fill="#C9CFCC" fill-opacity="1.000000" fill-rule="nonzero"/>
+		<path id="Vector" d="M43.55 25.01C43.55 27.12 42.81 29.17 41.44 30.81C40.08 32.44 38.18 33.58 36.06 34.02C33.93 34.46 31.72 34.18 29.79 33.23C27.85 32.27 26.31 30.7 25.43 28.78C24.54 26.85 24.36 24.69 24.92 22.65C25.47 20.61 26.73 18.82 28.48 17.58C30.24 16.33 32.37 15.71 34.54 15.81C36.71 15.92 38.77 16.74 40.39 18.14L36.79 21.64C35.98 21.12 35.03 20.84 34.06 20.84C33.09 20.84 32.14 21.13 31.34 21.66C30.54 22.2 29.92 22.95 29.56 23.83C29.2 24.7 29.13 25.67 29.34 26.59C29.55 27.51 30.04 28.35 30.75 29C31.45 29.64 32.34 30.07 33.3 30.22C34.26 30.37 35.24 30.24 36.12 29.84C37 29.45 37.74 28.8 38.24 27.99L32.43 27.99L32.43 24.42L43.53 24.42C43.55 24.61 43.55 24.81 43.55 25.01Z" fill="#C9CFCC" fill-opacity="1.000000" fill-rule="nonzero"/>
+	</g>
+</svg>
