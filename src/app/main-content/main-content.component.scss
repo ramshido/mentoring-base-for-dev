@@ -1,0 +1,128 @@
+.imgMan {
+	img {
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	margin-bottom: 50px;
+}
+
+.button {
+	width: 250px;
+	padding: 15px;
+	border: 1px solid black;
+	cursor: pointer;
+	display: block;
+	margin: 30px auto;
+	text-align: center;
+}
+
+// ------------------------------------------- Анимации для карточек
+
+.cards {
+	padding: 50px 0;
+
+	&__wrapper {
+		display: flex;
+		justify-content: center;
+		column-gap: 15px;
+	}
+
+	&__card {
+		width: 300px;
+		height: 450px;
+		background-color: white;
+		box-shadow: 0 0 25px rgba(122, 122, 122, 0.5);
+		border-radius: 15%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all .5s ease;
+
+		&:hover {
+			transform: translateY(-50px);
+		}
+
+		img {
+			width: 100%;
+			border-radius: 25%;
+			box-shadow: 0 0 25px rgba(122, 122, 122, 0.815);
+		}
+	}
+
+	// Анимация для первого изображения
+	.cards__card:nth-child(1) img {
+		animation: float1 4s ease-in-out infinite;
+	}
+
+	// Анимация для второго изображения
+	.cards__card:nth-child(2) img {
+		animation: float2 4s ease-in-out infinite;
+	}
+
+	// Анимация для третьего изображения
+	.cards__card:nth-child(3) img {
+		animation: float3 4s ease-in-out infinite;
+	}
+
+	// Анимация для движения по кругу (вправо, вниз, влево, вверх)
+	@keyframes float1 {
+		0% {
+			transform: translate(0, 0); // Начальная позиция
+		}
+
+		25% {
+			transform: translate(15px, 0); // Движение вправо
+		}
+
+		50% {
+			transform: translate(15px, 15px); // Вправо и вниз
+		}
+
+		75% {
+			transform: translate(0, 15px); // Вниз
+		}
+
+		100% {
+			transform: translate(0, 0); // Возврат к исходной
+		}
+	}
+
+	// Анимация для движения по диагонали (влево, вверх, вправо, вниз)
+	@keyframes float2 {
+		0% {
+			transform: translate(0, 0);
+		}
+
+		25% {
+			transform: translate(-15px, 0); // Влево
+		}
+
+		50% {
+			transform: translate(-15px, -15px); // Влево и вверх
+		}
+
+		75% {
+			transform: translate(0, -15px); // Вверх
+		}
+
+		100% {
+			transform: translate(0, 0); // Возврат
+		}
+	}
+
+	// Анимация для движения только вверх и вниз
+	@keyframes float3 {
+		0% {
+			transform: translateY(0);
+		}
+
+		50% {
+			transform: translateY(-20px); // Вверх
+		}
+
+		100% {
+			transform: translateY(0); // Вниз
+		}
+	}
+}

@@ -1,12 +1,15 @@
+
+
 <div class="header">
 	<div class="container">
 		<div class="header__wrapper">
 			<ul class="header__left">
 				<li class="header-logo"><img src="../assets/Frame.svg" alt="logo"></li>
-				<li class="header__left-item" *ngFor="let item of headerItems">{{item}}</li>
-				<li class="header__left-item" (click)="isItemHide = !isItemHide">Скрыть Мужика</li>
+				<li class="header__left-item" *ngFor="let item of headerItems" routerLink="/">{{item}}</li>
+				<li class="header__left-item" *ngIf="isAboutUs">О нас</li>
+				<li class="button" (click)="isAboutUs = !isAboutUs">Скрыть - О нас</li>
 			</ul>
-			<button class="header-btn">Admin</button>
+			<button class="button" routerLink="/users">Admin</button>
 			<ul class="header__right">
 				<li class="header__right-item">About</li>
 				<button class="header__right-btn">
@@ -18,16 +21,7 @@
 		</div>
 	</div>
 </div>
-<section class="imgMan" *ngIf="isItemHide">
-		<img src="../assets/Rectangle-5.png" alt="man">
-</section>
-<section class="cards">
-	<div class="container">
-		<div class="cards__wrapper">
-			<div class="cards__card">1</div>
-			<div class="cards__card">2</div>
-			<div class="cards__card">3</div>
-		</div>
-	</div>
-</section>
+
+<router-outlet></router-outlet>
+
 	

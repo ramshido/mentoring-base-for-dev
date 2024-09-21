@@ -1,0 +1,7 @@
+<h1>Компонент списка юзеров</h1>
+
+<div class="wrapper">
+	<div class="users-cards" *ngFor="let item of users">
+		<app-user-card [user]="item" (delete)="deleteUser($event)"></app-user-card>
+	</div>
+</div>
