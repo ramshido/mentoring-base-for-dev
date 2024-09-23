@@ -1,0 +1,7 @@
+<h1>Компонент списка Todos</h1>
+
+<div class="wrapper">
+	<div class="todos-cards" *ngFor="let item of todos">
+		<app-todos-card [todo]="item" (delete)="deleteTodo($event)"></app-todos-card>
+	</div>
+</div>
