@@ -8,25 +8,25 @@ import { ITodo } from './todos-list/todos-list.component';
 export class TodosService {
 	
 	private readonly todosSubject$ = new BehaviorSubject<ITodo[]>([]);
-	public readonly todosObservable$ = this.todosSubject$.asObservable();
+	public readonly todos$ = this.todosSubject$.asObservable();
 
-  gettodo(todos: ITodo[]) {
+  getTodo(todos: ITodo[]) {
 		this.todosSubject$.next(todos);
 	}
 
-	edittodo(todo: ITodo) {
+	editTodo(todo: ITodo) {
 		this.todosSubject$.next(
 			this.todosSubject$.value.map(item => (item.id === todo.id) ? todo : item)
 		)
 	}
 
-	addtodo(todo: ITodo) {
+	addTodo(todo: ITodo) {
 		this.todosSubject$.next(
 			[...this.todosSubject$.value, todo]
 		);
 	}
 
-	deletetodo(id: number) {
+	deleteTodo(id: number) {
 		this.todosSubject$.next(
 			this.todosSubject$.value.filter(item => item.id !== id)
 		)

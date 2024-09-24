@@ -27,11 +27,11 @@ export class TodosListComponent {
 
 	constructor() {
 		this.todosApiService.getTodos().subscribe((response: any) => {
-			this.todoService.gettodo(response);
+			this.todoService.getTodo(response);
 		})
 	}
 
 	deleteTodo(id: number) {
-		this.todoService.deletetodo(id);
+		this.todoService.deleteTodo(id);
 	}
 }

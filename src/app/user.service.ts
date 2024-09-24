@@ -7,7 +7,7 @@ import { IUser } from './users-list/users-list.component';
 })
 export class UserService {
 	private readonly usersSubject$ = new BehaviorSubject<IUser[]>([]);
-	public readonly usersObservable$ = this.usersSubject$.asObservable();
+	public readonly users$ = this.usersSubject$.asObservable();
 
 	getUser(users: IUser[]) {
 		this.usersSubject$.next(users);
