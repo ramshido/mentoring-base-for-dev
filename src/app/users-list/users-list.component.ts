@@ -42,7 +42,7 @@ export class UsersListComponent {
 	
 	constructor() {
 		this.apiUsers.getUsers().subscribe((response: any) => {
-			this.userService.getUser(response);
+			this.userService.setUser(response);
 		})
 	}
 

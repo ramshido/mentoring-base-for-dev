@@ -10,7 +10,7 @@ export class TodosService {
 	private readonly todosSubject$ = new BehaviorSubject<ITodo[]>([]);
 	public readonly todos$ = this.todosSubject$.asObservable();
 
-  getTodo(todos: ITodo[]) {
+  setTodo(todos: ITodo[]) {
 		this.todosSubject$.next(todos);
 	}
 

@@ -27,7 +27,7 @@ export class TodosListComponent {
 
 	constructor() {
 		this.todosApiService.getTodos().subscribe((response: any) => {
-			this.todoService.getTodo(response);
+			this.todoService.setTodo(response);
 		})
 	}
 
