@@ -10,5 +10,5 @@ import { Component } from "@angular/core";
 })
 
 export class MainContentComponent {
-	isItemHide = true
+	public isItemHide = true
 }

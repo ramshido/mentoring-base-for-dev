@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { IUser } from './users-list/users-list.component';
+import { IUser } from './Interfaces/IUserInterface';
 
 @Injectable({
 	providedIn: 'root'
@@ -9,25 +9,25 @@ export class UserService {
 	private readonly usersSubject$ = new BehaviorSubject<IUser[]>([]);
 	public readonly users$ = this.usersSubject$.asObservable();
 
-	setUser(users: IUser[]) {
+	public setUser(users: IUser[]) {
 		this.usersSubject$.next(users);
-	}
+	};
 
-	editUser(user: IUser) {
+	public editUser(user: IUser) {
 		this.usersSubject$.next(
 			this.usersSubject$.value.map(item => (item.id === user.id) ? user : item)
-		)
-	}
+		);
+	};
 
-	addUser(user: IUser) {
+	public addUser(user: IUser) {
 		this.usersSubject$.next(
 			[...this.usersSubject$.value, user]
 		);
-	}
+	};
 
-	deleteUser(id: number) {
+	public deleteUser(id: number) {
 		this.usersSubject$.next(
 			this.usersSubject$.value.filter(item => item.id !== id)
 		)
-	}
+	};
 }

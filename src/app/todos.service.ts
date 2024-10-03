@@ -1,34 +1,34 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ITodo } from './todos-list/todos-list.component';
+import { ITodo } from './Interfaces/ITodoInterface';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class TodosService {
-	
+
 	private readonly todosSubject$ = new BehaviorSubject<ITodo[]>([]);
 	public readonly todos$ = this.todosSubject$.asObservable();
 
-  setTodo(todos: ITodo[]) {
+	public setTodo(todos: ITodo[]) {
 		this.todosSubject$.next(todos);
-	}
+	};
 
-	editTodo(todo: ITodo) {
+	public editTodo(todo: ITodo) {
 		this.todosSubject$.next(
 			this.todosSubject$.value.map(item => (item.id === todo.id) ? todo : item)
-		)
-	}
+		);
+	};
 
-	addTodo(todo: ITodo) {
+	public addTodo(todo: ITodo) {
 		this.todosSubject$.next(
 			[...this.todosSubject$.value, todo]
 		);
-	}
+	};
 
-	deleteTodo(id: number) {
+	public deleteTodo(id: number) {
 		this.todosSubject$.next(
 			this.todosSubject$.value.filter(item => item.id !== id)
-		)
-	}
+		);
+	};
 }

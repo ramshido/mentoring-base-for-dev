@@ -4,50 +4,26 @@ import { UsersApiService } from '../user-api.service';
 import { AsyncPipe, NgFor } from '@angular/common';
 import { UserService } from '../user.service';
 
-export interface IUser {
-	id: number,
-	name: string,
-	username: string,
-	email: string,
-	address: {
-		street: string,
-		suites: string,
-		city: string,
-		zipcode: string,
-		geo: {
-			lat: string,
-			lng: string
-		};
-	};
-	phone: string,
-	website: string,
-	company: {
-		name: string,
-		catchPhrase: string,
-		bs: string
-	};
-}
-
 @Component({
-  selector: 'app-users-list',
-  standalone: true,
-  imports: [UserCardComponent, NgFor, AsyncPipe],
-  templateUrl: './users-list.component.html',
-  styleUrl: './users-list.component.scss',
+	selector: 'app-users-list',
+	standalone: true,
+	imports: [UserCardComponent, NgFor, AsyncPipe],
+	templateUrl: './users-list.component.html',
+	styleUrl: './users-list.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersListComponent {
-	readonly apiUsers = inject(UsersApiService);
-	readonly userService = inject(UserService);
-	
+	private readonly apiUsers = inject(UsersApiService);
+	public readonly userService = inject(UserService);
+
 	constructor() {
 		this.apiUsers.getUsers().subscribe((response: any) => {
 			this.userService.setUser(response);
 		})
-	}
+	};
 
-	deleteUser(id: number) {
+	public deleteUser(id: number) {
 		this.userService.deleteUser(id);
-	}
+	};
 
 }
