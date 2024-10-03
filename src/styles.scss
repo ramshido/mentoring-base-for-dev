@@ -43,3 +43,30 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 	margin: 0 auto;
 	padding: 0 60px;
 }
+
+.form-btn {
+	height: 30px;
+	padding: 0 5px;
+	font-size: 14px;
+	background-color: #f0ba4e;
+	border-radius: 5px;
+}
+
+.form-wrapper {
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	margin-top: 100px;
+
+	input {
+		display: block;
+		border: 1px solid black;
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+
+	.form-alert-error {
+		color: red;
+		margin: 15px 0;
+	}
+}

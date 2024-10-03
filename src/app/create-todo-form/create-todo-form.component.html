@@ -1,0 +1,26 @@
+<div class="form-wrapper">
+	<form id="form" [formGroup]="form" (ngSubmit)="submitForm()">
+		<p>ТЕКСТ ЗАДАЧИ:</p>
+		<input type="text" formControlName="title">
+		<div class="form-alert-error"
+			*ngIf="form.controls['title'].invalid && (form.controls['title'].dirty || form.controls['title'].touched)">
+			Текст задачи задан неправильно
+		</div>
+
+		<p>АВТОР ЗАДАЧИ</p>
+		<input type="text" formControlName="userId">
+		<div class="form-alert-error"
+			*ngIf="form.controls['userId'].invalid && (form.controls['userId'].dirty || form.controls['userId'].touched)">
+			Автор задачи введен неправильно
+		</div>
+
+		<p>ЗАДАЧА ЗАВЕРШЕНА:</p>
+		<input type="text" formControlName="completed">
+		<div class="form-alert-error"
+			*ngIf="form.controls['completed'].invalid && (form.controls['completed'].dirty || form.controls['completed'].touched)">
+			Ошибка
+		</div>
+
+		<button class="form-btn" [disabled]="form.invalid">Create</button>
+	</form>
+</div>
