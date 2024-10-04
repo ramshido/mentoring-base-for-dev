@@ -46,11 +46,9 @@ export class CreateTodoFormComponent {
 	});
 
 	private getCompletedValue(): boolean {
-		return (
-			this.form.get('completed')?.value!
-				.trim()
-				.toLowerCase() === 'да' ? true : false
-		);
+		if (this.form.get('completed')?.value!.trim().toLowerCase() === 'да') {
+			return true;
+		} else return false;
 	};
 
 	public submitForm(): void {

@@ -31,8 +31,8 @@ export class TodosListComponent {
 
 	public createTodo(todo: ICreateTodo) {
 		this.todoService.createTodo({
-			userId: todo.userId,
 			id: new Date().getTime(),
+			userId: todo.userId,
 			title: todo.title,
 			completed: todo.completed,
 		});

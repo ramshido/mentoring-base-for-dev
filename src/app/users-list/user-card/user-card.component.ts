@@ -13,9 +13,9 @@ export class UserCardComponent {
 	public user!: IUser;
 
 	@Output()
-	public readonly delete = new EventEmitter();
+	public readonly deleteUser = new EventEmitter();
 
 	public onDelete(userId: number) {
-		this.delete.emit(userId);
+		this.deleteUser.emit(userId);
 	};
 }
