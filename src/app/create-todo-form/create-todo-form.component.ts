@@ -1,8 +1,7 @@
 import { NgIf } from '@angular/common';
-import { Component, EventEmitter, Inject, inject, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {
 	AbstractControl,
-	FormBuilder,
 	FormControl,
 	FormGroup,
 	ReactiveFormsModule,
@@ -27,8 +26,6 @@ export function completedValidator(): ValidatorFn {
 	styleUrl: './create-todo-form.component.scss'
 })
 export class CreateTodoFormComponent {
-	private readonly fb = inject(FormBuilder);
-
 	@Output()
 	public readonly createTodo = new EventEmitter();
 
@@ -46,20 +43,6 @@ export class CreateTodoFormComponent {
 			Validators.required,
 			completedValidator(),
 		]),
-	});
-
-	public readonly myFormBuilder = this.fb.group({
-		userId: [
-			'',
-			[
-				Validators.required,
-				Validators.maxLength(1),
-				Validators.pattern('^[0-9]*$'),
-			],
-			[]
-		],
-		title: '',
-		completed: '',
 	});
 
 	private getCompletedValue(): boolean {
