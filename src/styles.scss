@@ -60,13 +60,13 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 
 	input {
 		display: block;
-		border: 1px solid black;
+		border: 1px solid #000000;
 		margin-top: 15px;
 		margin-bottom: 15px;
 	}
 
 	.form-alert-error {
-		color: red;
+		color: #ff0000;
 		margin: 15px 0;
 	}
 }
