@@ -1,37 +1,59 @@
 <div class="form-wrapper">
-	<form id="form" [formGroup]="form" (ngSubmit)="submitForm()">
+	<form id="form" [formGroup]="form">
 		<p>Name:</p>
-		<input type="text" formControlName="name">
-		<div class="form-alert-error"
-		*ngIf="form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)"
-		>
-			Имя введено неправильно
-		</div>
+		<mat-form-field class="form-input-wrapper">
+			<mat-label>Имя</mat-label>
+			<input matInput type="text" formControlName="name" [errorStateMatcher]="matcher">
+			<mat-error *ngIf="form.controls['name'].hasError('minlength') && !form.controls['name'].hasError('required')">
+				Имя слишком короткое
+			</mat-error>
+			<mat-error *ngIf="form.controls['name'].hasError('required')">
+				Поле не заполнено
+			</mat-error>
+		</mat-form-field>
 
 		<p>Email:</p>
-		<input type="text" formControlName="email">
-		<div class="form-alert-error"
-		*ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)"
-		>
-			Email введен неправильно
-		</div>
+		<mat-form-field class="form-input-wrapper">
+			<mat-label>Email</mat-label>
+			<input matInput type="email" formControlName="email" [errorStateMatcher]="matcher"
+				placeholder="Ex. pat@example.com">
+			<mat-error *ngIf="form.controls['email'].hasError('email') && !form.controls['email'].hasError('required')">
+				Email введен неправильно
+			</mat-error>
+			<mat-error *ngIf="form.controls['email'].hasError('required')">
+				Email <strong>не написан</strong>
+			</mat-error>
+		</mat-form-field>
 
 		<p>Website:</p>
-		<input type="text" formControlName="website">
-		<div class="form-alert-error"
-		*ngIf="form.controls['website'].invalid && (form.controls['website'].dirty || form.controls['website'].touched)"
-		>
-		website введен неправильно
-		</div>
+		<mat-form-field class="form-input-wrapper">
+			<mat-label>Веб-сайт</mat-label>
+			<input matInput type="text" formControlName="website" [errorStateMatcher]="matcher">
+			<mat-error
+				*ngIf="form.controls['website'].hasError('minlength') && !form.controls['website'].hasError('required')">
+				Имя сайта слишком короткое
+			</mat-error>
+			<mat-error *ngIf="form.controls['website'].hasError('required')">
+				Поле не заполнено
+			</mat-error>
+		</mat-form-field>
 
 		<p>Company name:</p>
-		<input type="text" formControlName="companyName">
-		<div class="form-alert-error"
-		*ngIf="form.controls['companyName'].invalid && (form.controls['companyName'].dirty || form.controls['companyName'].touched)"
-		>
-		company name введен неправильно
-		</div>
+		<mat-form-field class="form-input-wrapper">
+			<mat-label>Название компании</mat-label>
+			<input matInput type="text" formControlName="companyName" [errorStateMatcher]="matcher">
+			<mat-error
+				*ngIf="form.controls['companyName'].hasError('minlength') && !form.controls['companyName'].hasError('required')">
+				Имя компании слишком короткое
+			</mat-error>
+			<mat-error *ngIf="form.controls['companyName'].hasError('required')">
+				Поле не заполнено
+			</mat-error>
+		</mat-form-field>
 
-		<button class="form-btn" [disabled]="form.invalid">Create User</button>
+		<button mat-raised-button [disabled]="form.invalid" type="submit" (click)="submitForm()">
+			<mat-icon>add</mat-icon>
+			Create User
+		</button>
 	</form>
 </div>
