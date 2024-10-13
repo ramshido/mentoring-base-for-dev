@@ -1,14 +1,18 @@
 import { NgIf } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import {
+	ReactiveFormsModule,
 	AbstractControl,
 	FormControl,
 	FormGroup,
-	ReactiveFormsModule,
 	ValidationErrors,
 	ValidatorFn,
-	Validators
+	Validators,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MyErrorStateMatcher } from '../utils/error-state-matcher';
 
 export function completedValidator(): ValidatorFn {
 	return (control: AbstractControl): ValidationErrors | null => {
@@ -21,7 +25,13 @@ export function completedValidator(): ValidatorFn {
 @Component({
 	selector: 'app-create-todo-form',
 	standalone: true,
-	imports: [ReactiveFormsModule, NgIf],
+	imports: [
+		NgIf,
+		ReactiveFormsModule,
+		MatInputModule,
+		MatButtonModule,
+		MatIconModule,
+	],
 	templateUrl: './create-todo-form.component.html',
 	styleUrl: './create-todo-form.component.scss'
 })
@@ -44,6 +54,8 @@ export class CreateTodoFormComponent {
 			completedValidator(),
 		]),
 	});
+	
+	public readonly matcher = new MyErrorStateMatcher();
 
 	private getCompletedValue(): boolean {
 		if (this.form.get('completed')?.value!.trim().toLowerCase() === 'да') {

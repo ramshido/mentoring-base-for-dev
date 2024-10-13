@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ITodo } from './Interfaces/ITodoInterface';
+import { ITodo } from '../interfaces/todo.interface';
 
 @Injectable({
 	providedIn: 'root'

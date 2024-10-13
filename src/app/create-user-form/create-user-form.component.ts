@@ -1,39 +1,22 @@
 import { NgIf } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import {
-	NgForm,
 	ReactiveFormsModule,
-	AbstractControl,
 	FormControl,
 	FormGroup,
-	FormGroupDirective,
-	FormsModule,
 	Validators
 } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-	isErrorState(control: AbstractControl | null, form: FormGroupDirective | NgForm | null): boolean {
-		const isSubmitted = form && form.submitted;
-		return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-	};
-}
+import { MyErrorStateMatcher } from '../utils/error-state-matcher';
 
 @Component({
 	selector: 'app-create-user-form',
 	standalone: true,
 	imports: [
-		ReactiveFormsModule,
 		NgIf,
-		FormsModule,
-		MatInputModule,
-		MatFormFieldModule,
-		MatDividerModule,
+		ReactiveFormsModule,
 		MatInputModule,
 		MatButtonModule,
 		MatIconModule,
@@ -59,3 +42,4 @@ export class CreateUserFormComponent {
 		this.form.reset();
 	};
 }
+

@@ -1,26 +1,33 @@
 <div class="form-wrapper">
-	<form id="form" [formGroup]="form" (ngSubmit)="submitForm()">
+	<form id="form" [formGroup]="form">
 		<p>ТЕКСТ ЗАДАЧИ:</p>
-		<input type="text" formControlName="title">
-		<div class="form-alert-error"
-			*ngIf="form.controls['title'].invalid && (form.controls['title'].dirty || form.controls['title'].touched)">
-			Текст задачи задан неправильно
-		</div>
+		<mat-form-field class="form-input-wrapper">
+			<mat-label>Текст</mat-label>
+			<input type="text" formControlName="title" matInput>
+		</mat-form-field>
 
 		<p>АВТОР ЗАДАЧИ</p>
-		<input type="text" formControlName="userId">
-		<div class="form-alert-error"
-			*ngIf="form.controls['userId'].invalid && (form.controls['userId'].dirty || form.controls['userId'].touched)">
-			Автор задачи введен неправильно
-		</div>
+		<mat-form-field class="form-input-wrapper">
+			<mat-label>Напишите число</mat-label>
+			<input type="text" formControlName="userId" matInput>
+		</mat-form-field>
 
 		<p>ЗАДАЧА ЗАВЕРШЕНА:</p>
-		<input type="text" formControlName="completed">
-		<div class="form-alert-error"
-			*ngIf="form.controls['completed'].invalid && (form.controls['completed'].dirty || form.controls['completed'].touched)">
-			Ошибка
-		</div>
+		<mat-form-field class="form-input-wrapper">
+			<mat-label>Да или Нет</mat-label>
+			<input type="text" formControlName="completed" matInput [errorStateMatcher]="matcher">
+			<mat-error
+				*ngIf="form.controls['completed'].hasError('invalidCompleted') && !form.controls['completed'].hasError('required')">
+				Введите только - Да или Нет
+			</mat-error>
+			<mat-error *ngIf="form.controls['completed'].hasError('required')">
+				Поле не заполнено
+			</mat-error>
+		</mat-form-field>
 
-		<button class="form-btn" [disabled]="form.invalid">Create</button>
+		<button mat-raised-button type="submit" [disabled]="form.invalid" (click)="submitForm()">
+			<mat-icon>add</mat-icon>
+			Create
+		</button>
 	</form>
 </div>
