@@ -5,8 +5,4 @@ export interface ITodo {
 	completed: boolean
 }
 
-export interface ICreateTodo {
-	userId: number
-	title: string
-	completed: boolean
-}
+export interface ICreateTodo extends Omit<ITodo, 'id'> { }
