@@ -13,7 +13,7 @@ export class TodosCardComponent {
 	public todo!: ITodo;
 
 	@Output()
-	public readonly deleteTodo = new EventEmitter();
+	public readonly deleteTodo = new EventEmitter<number>();
 
 	public onDeleteTodo(id: number) {
 		this.deleteTodo.emit(id);

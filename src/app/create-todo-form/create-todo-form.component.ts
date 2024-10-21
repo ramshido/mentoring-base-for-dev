@@ -2,25 +2,15 @@ import { NgIf } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import {
 	ReactiveFormsModule,
-	AbstractControl,
 	FormControl,
 	FormGroup,
-	ValidationErrors,
-	ValidatorFn,
 	Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MyErrorStateMatcher } from '../utils/error-state-matcher';
-
-export function completedValidator(): ValidatorFn {
-	return (control: AbstractControl): ValidationErrors | null => {
-		const value = control.value?.trim().toLowerCase();
-		if (value === 'да' || value === 'нет') return null;
-		return { invalidCompleted: true };
-	};
-};
+import { completedValidator } from '../utils/forms-validators';
 
 @Component({
 	selector: 'app-create-todo-form',
@@ -40,6 +30,7 @@ export class CreateTodoFormComponent {
 	public readonly createTodo = new EventEmitter();
 
 	public readonly form = new FormGroup({
+		id: new FormControl(new Date().getTime()),
 		userId: new FormControl('', [
 			Validators.required,
 			Validators.maxLength(1),

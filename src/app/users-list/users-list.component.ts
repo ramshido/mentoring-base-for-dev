@@ -4,7 +4,8 @@ import { UsersApiService } from '../services/user-api.service';
 import { AsyncPipe, NgFor } from '@angular/common';
 import { UserService } from '../services/user.service';
 import { CreateUserFormComponent } from '../create-user-form/create-user-form.component';
-import { ICreateUser } from '../interfaces/user.interface';
+import { ICreateUser, IUser } from '../interfaces/user.interface';
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
 	selector: 'app-users-list',
@@ -17,9 +18,10 @@ import { ICreateUser } from '../interfaces/user.interface';
 export class UsersListComponent {
 	private readonly apiUsers = inject(UsersApiService);
 	public readonly userService = inject(UserService);
+	private readonly dialog = inject(MatDialog);
 
 	constructor() {
-		this.apiUsers.getUsers().subscribe((response: any) => {
+		this.apiUsers.getUsers().subscribe((response: IUser[]) => {
 			this.userService.setUser(response);
 		})
 	};
@@ -29,15 +31,7 @@ export class UsersListComponent {
 	};
 
 	public createUser(user: ICreateUser): void {
-		this.userService.createUser({
-			id: new Date().getTime(),
-			name: user.name,
-			email: user.email,
-			website: user.website,
-			company: {
-				name: user.companyName,
-			},
-		});
+		this.userService.createUser(user);
 	};
 
 }
