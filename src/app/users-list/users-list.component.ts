@@ -3,14 +3,21 @@ import { UserCardComponent } from './user-card/user-card.component';
 import { UsersApiService } from '../services/user-api.service';
 import { AsyncPipe, NgFor } from '@angular/common';
 import { UserService } from '../services/user.service';
-import { CreateUserFormComponent } from '../create-user-form/create-user-form.component';
 import { ICreateUser, IUser } from '../interfaces/user.interface';
 import { MatDialog } from "@angular/material/dialog";
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { CreateUserDialogComponent } from './create-user-dialog/create-user-dialog.component';
 
 @Component({
 	selector: 'app-users-list',
 	standalone: true,
-	imports: [UserCardComponent, NgFor, AsyncPipe, CreateUserFormComponent],
+	imports: [
+		UserCardComponent,
+		NgFor,
+		AsyncPipe,
+		MatButtonModule,
+		MatIconModule],
 	templateUrl: './users-list.component.html',
 	styleUrl: './users-list.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush
@@ -32,6 +39,21 @@ export class UsersListComponent {
 
 	public createUser(user: ICreateUser): void {
 		this.userService.createUser(user);
+	};
+
+	public openDialog(): void {
+		const dialogRef = this.dialog.open(CreateUserDialogComponent, {
+			width: '600px',
+			height: 'normal',
+		});
+
+		const dialogComponentInstance = dialogRef.componentInstance;
+
+		dialogComponentInstance.dataSubject.subscribe((data: ICreateUser) => {
+			if (data) {
+				this.createUser(data);
+			};
+		});
 	};
 
 }

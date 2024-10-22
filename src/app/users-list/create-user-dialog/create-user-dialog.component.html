@@ -1,7 +1,7 @@
-<div class="form-wrapper">
+<mat-dialog-content>
 	<form id="form" [formGroup]="form">
-		<p>Name:</p>
-		<mat-form-field class="form-input-wrapper">
+		<p class="dialog-label">Name:</p>
+		<mat-form-field class="dialog-form-field">
 			<mat-label>Имя</mat-label>
 			<input matInput type="text" formControlName="name" [errorStateMatcher]="matcher">
 			<mat-error *ngIf="form.controls['name'].hasError('minlength') && !form.controls['name'].hasError('required')">
@@ -12,8 +12,8 @@
 			</mat-error>
 		</mat-form-field>
 
-		<p>Email:</p>
-		<mat-form-field class="form-input-wrapper">
+		<p class="dialog-label">Email:</p>
+		<mat-form-field class="dialog-form-field">
 			<mat-label>Email</mat-label>
 			<input matInput type="email" formControlName="email" [errorStateMatcher]="matcher"
 				placeholder="Ex. pat@example.com">
@@ -25,8 +25,8 @@
 			</mat-error>
 		</mat-form-field>
 
-		<p>Website:</p>
-		<mat-form-field class="form-input-wrapper">
+		<p class="dialog-label">Website:</p>
+		<mat-form-field class="dialog-form-field">
 			<mat-label>Веб-сайт</mat-label>
 			<input matInput type="text" formControlName="website" [errorStateMatcher]="matcher">
 			<mat-error
@@ -38,22 +38,21 @@
 			</mat-error>
 		</mat-form-field>
 
-		<p>Company name:</p>
-		<mat-form-field class="form-input-wrapper">
+		<p class="dialog-label">Company name:</p>
+		<mat-form-field class="dialog-form-field" formGroupName="company">
 			<mat-label>Название компании</mat-label>
-			<input matInput type="text" formControlName="companyName" [errorStateMatcher]="matcher">
+			<input matInput type="text" formControlName="name" [errorStateMatcher]="matcher">
 			<mat-error
-				*ngIf="form.controls['companyName'].hasError('minlength') && !form.controls['companyName'].hasError('required')">
+				*ngIf="form.get('company.name')?.hasError('minlength') && !form.get('company.name')?.hasError('required')">
 				Имя компании слишком короткое
 			</mat-error>
-			<mat-error *ngIf="form.controls['companyName'].hasError('required')">
+			<mat-error *ngIf="form.get('company.name')?.hasError('required')">
 				Поле не заполнено
 			</mat-error>
 		</mat-form-field>
-
-		<button mat-raised-button [disabled]="form.invalid" type="submit" (click)="submitForm()">
-			<mat-icon>add</mat-icon>
-			Create User
-		</button>
 	</form>
-</div>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-action">
+	<button mat-flat-button class="dialog-actions-btn" [mat-dialog-close]="false">No</button>
+	<button mat-flat-button class="dialog-actions-btn" [disabled]="form.invalid" (click)="closeDialog()">Create</button>
+</mat-dialog-actions>
