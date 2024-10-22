@@ -1,0 +1,67 @@
+<h2 mat-dialog-title><span class="mark">{{data.user.name}}</span> is editing</h2>
+<mat-dialog-content>
+	<form id="form" [formGroup]="form">
+		<p class="dialog-label">Name:</p>
+		<mat-form-field class="dialog-form-field">
+			<mat-label>Имя</mat-label>
+			<input matInput type="text" formControlName="name" [errorStateMatcher]="matcher">
+			<mat-error *ngIf="form.controls['name'].hasError('minlength') && !form.controls['name'].hasError('required')">
+				Имя слишком короткое
+			</mat-error>
+			<mat-error *ngIf="form.controls['name'].hasError('required')">
+				Поле не заполнено
+			</mat-error>
+		</mat-form-field>
+
+		<p class="dialog-label">Email:</p>
+		<mat-form-field class="dialog-form-field">
+			<mat-label>Email</mat-label>
+			<input matInput type="email" formControlName="email" [errorStateMatcher]="matcher"
+				placeholder="Ex. pat@example.com">
+			<mat-error *ngIf="form.controls['email'].hasError('email') && !form.controls['email'].hasError('required')">
+				Email введен неправильно
+			</mat-error>
+			<mat-error *ngIf="form.controls['email'].hasError('required')">
+				Email <strong>не написан</strong>
+			</mat-error>
+		</mat-form-field>
+
+		<p class="dialog-label">Website:</p>
+		<mat-form-field class="dialog-form-field">
+			<mat-label>Веб-сайт</mat-label>
+			<input matInput type="text" formControlName="website" [errorStateMatcher]="matcher">
+			<mat-error
+				*ngIf="form.controls['website'].hasError('minlength') && !form.controls['website'].hasError('required')">
+				Имя сайта слишком короткое
+			</mat-error>
+			<mat-error *ngIf="form.controls['website'].hasError('required')">
+				Поле не заполнено
+			</mat-error>
+		</mat-form-field>
+
+		<p class="dialog-label">Company name:</p>
+		<mat-form-field class="dialog-form-field" formGroupName="company">
+			<mat-label>Название компании</mat-label>
+			<input matInput type="text" formControlName="name" [errorStateMatcher]="matcher">
+			<mat-error
+				*ngIf="form.get('company.name')?.hasError('minlength') && !form.get('company.name')?.hasError('required')">
+				Имя компании слишком короткое
+			</mat-error>
+			<mat-error *ngIf="form.get('company.name')?.hasError('required')">
+				Поле не заполнено
+			</mat-error>
+		</mat-form-field>
+	</form>
+</mat-dialog-content>
+
+<mat-dialog-actions class="dialog-action">
+	<button mat-flat-button class="dialog-actions-btn" [mat-dialog-close]="false">No</button>
+	<button 
+	mat-flat-button 
+	class="dialog-actions-btn" 
+	[disabled]="form.invalid" 
+	[mat-dialog-close]="userWithUpdatedFields"
+	>
+	Edit
+</button>
+</mat-dialog-actions>

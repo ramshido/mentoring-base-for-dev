@@ -1,7 +1,7 @@
 <h1>Компонент списка юзеров</h1>
 <div class="wrapper">
 	<div class="users-cards" *ngFor="let user of userService.users$ | async">
-		<app-user-card [user]="user" (deleteUser)="deleteUser($event)"></app-user-card>
+		<app-user-card [user]="user" (deleteUser)="deleteUser($event)" (editUser)="editUser($event)"></app-user-card>
 	</div>
 </div>
 

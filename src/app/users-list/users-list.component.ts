@@ -41,6 +41,11 @@ export class UsersListComponent {
 		this.userService.createUser(user);
 	};
 
+	public editUser(formDialogValue: any): void {
+		console.log('hello');
+		
+	}
+
 	public openDialog(): void {
 		const dialogRef = this.dialog.open(CreateUserDialogComponent, {
 			width: '600px',
