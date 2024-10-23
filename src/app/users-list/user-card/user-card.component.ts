@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { ICreateUser, IUser } from '../../interfaces/user.interface';
+import { IUser } from '../../interfaces/user.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserDialogComponent } from '../edit-user-dialog/edit-user-dialog.component';
 
@@ -20,7 +20,7 @@ export class UserCardComponent {
 	public readonly deleteUser = new EventEmitter<number>();
 
 	@Output()
-	public readonly editUser = new EventEmitter<ICreateUser>();
+	public readonly editUser = new EventEmitter<IUser>();
 
 	public onDelete(userId: number) {
 		this.deleteUser.emit(userId);
@@ -32,7 +32,7 @@ export class UserCardComponent {
 			data: { user: this.user },
 		})
 		.afterClosed()
-		.subscribe((editedResult: ICreateUser) => {
+		.subscribe((editedResult: IUser) => {
 			if (editedResult) {
 				this.editUser.emit(editedResult);
 			}

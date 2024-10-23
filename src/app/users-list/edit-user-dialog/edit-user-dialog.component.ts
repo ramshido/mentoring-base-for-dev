@@ -26,7 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
 	styleUrl: './edit-user-dialog.component.scss'
 })
 export class EditUserDialogComponent {
-	matcher = new MyErrorStateMatcher();
+	public readonly matcher = new MyErrorStateMatcher();
 	public readonly data = inject<{ user: IUser }>(MAT_DIALOG_DATA);
 
 	public readonly form = new FormGroup({

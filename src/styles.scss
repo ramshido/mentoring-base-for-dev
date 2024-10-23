@@ -141,6 +141,56 @@ h6 {
 	gap: 20px 20px;
 }
 
+.cards-btn {
+	display: block;
+	margin: 0 auto;
+	width: 80px;
+	height: 40px;
+	border: 1px solid #f0a747;
+	border-radius: 20px;
+	background: 0;
+	transition: all 0.5s ease;
+
+	&:hover {
+		background: #f0a747;
+		color: #ffffff;
+	}
+}
+
+.create-dialog-btn {
+	position: fixed !important;
+	right: 400px;
+	bottom: 100px;
+	background-color: rgb(255, 196, 0) !important;
+	animation: wobble-ver-left 5s ease-in-out 3;
+}
+
+@keyframes wobble-ver-left {
+  0%,
+  15% {
+    transform: translateY(0) rotate(0);
+    transform-origin: 50% 50%;
+  }
+  30% {
+    transform: translateY(-30px) rotate(-6deg);
+  }
+  45% {
+    transform: translateY(15px) rotate(6deg);
+  }
+  60% {
+    transform: translateY(-15px) rotate(-3.6deg);
+  }
+  75% {
+    transform: translateY(9px) rotate(2.4deg);
+  }
+  90% {
+    transform: translateY(-6px) rotate(-1.2deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0); /* В конце возвращаемся в исходное положение */
+  }
+}
+
 .dialog-form-field {
 	width: 100%;
 }
@@ -155,4 +205,24 @@ h6 {
 
 .mark {
 	color: #31cca5;
+}
+
+.dialog-action {
+	justify-content: space-around !important;
+	padding: 15px !important;
+}
+
+.dialog-actions-btn {
+	width: 200px !important;
+	&:not(:disabled) {
+		background-color: #f0f0f0 !important;
+	}
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+	background-color: transparent !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after {
+	border-bottom-color: #31cca5 !important;
 }

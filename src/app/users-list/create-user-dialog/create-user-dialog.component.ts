@@ -9,12 +9,7 @@ import { Subject } from 'rxjs';
 import { ICreateUser } from '../../interfaces/user.interface';
 import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
-type FormControls<T> = {
-	[K in keyof T]: T[K] extends object
-	? FormGroup<FormControls<T[K]>>
-	: FormControl<T[K]>;
-};
+import {FormControls} from '../../utils/Interfaces-to-reactive-form';
 
 @Component({
 	selector: 'app-create-user-dialog',
