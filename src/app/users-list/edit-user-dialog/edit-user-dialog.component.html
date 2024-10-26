@@ -60,7 +60,7 @@
 	mat-flat-button 
 	class="dialog-actions-btn" 
 	[disabled]="form.invalid" 
-	[mat-dialog-close]="userWithUpdatedFields"
+	(click)="submitForm()"
 	>
 	Edit
 </button>

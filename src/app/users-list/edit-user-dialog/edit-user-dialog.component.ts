@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
 import { IUser } from '../../interfaces/user.interface';
 import { MyErrorStateMatcher } from '../../utils/error-state-matcher';
 import { NgIf } from '@angular/common';
@@ -26,8 +26,9 @@ import { MatButtonModule } from '@angular/material/button';
 	styleUrl: './edit-user-dialog.component.scss'
 })
 export class EditUserDialogComponent {
-	public readonly matcher = new MyErrorStateMatcher();
+	private readonly dialogRef = inject(MatDialogRef<EditUserDialogComponent>);
 	public readonly data = inject<{ user: IUser }>(MAT_DIALOG_DATA);
+	public readonly matcher = new MyErrorStateMatcher();
 
 	public readonly form = new FormGroup({
 		id: new FormControl(this.data.user.id),
@@ -39,8 +40,8 @@ export class EditUserDialogComponent {
 		}),
 	});
 
-	get userWithUpdatedFields() {
-		return this.form.value
-	}
+	public submitForm() {
+		this.dialogRef.close(this.form.value);
+	};
 
 }

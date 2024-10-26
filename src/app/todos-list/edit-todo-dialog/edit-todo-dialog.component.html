@@ -1,0 +1,52 @@
+
+<mat-dialog-content class="mat-dialog-content">
+	<form [formGroup]="form">
+		<p class="dialog-label">ТЕКСТ ЗАДАЧИ:</p>
+		<mat-form-field class="dialog-form-field">
+			<mat-label>Текст</mat-label>
+			<input type="text" formControlName="title" matInput [errorStateMatcher]="matcher">
+			<mat-error
+				*ngIf="form.controls['title'].hasError('minlength') && !form.controls['title'].hasError('required')">
+				Текст слишком короткий
+			</mat-error>
+			<mat-error *ngIf="form.controls['title'].hasError('required')">
+				Поле не заполнено
+			</mat-error>
+		</mat-form-field>
+
+		<p class="dialog-label">АВТОР ЗАДАЧИ</p>
+		<mat-form-field class="dialog-form-field">
+			<mat-label>Напишите число</mat-label>
+			<input type="text" formControlName="userId" matInput [errorStateMatcher]="matcher">
+			<mat-error
+				*ngIf="form.controls['userId'].hasError('pattern') && !form.controls['userId'].hasError('required')">
+				Введите число от 0 до 9
+			</mat-error>
+			<mat-error *ngIf="form.controls['userId'].hasError('required')">
+				Поле не заполнено
+			</mat-error>
+		</mat-form-field>
+
+		<p class="dialog-label">ЗАДАЧА ЗАВЕРШЕНА:</p>
+		<mat-form-field class="dialog-form-field">
+			<mat-label>Да или Нет</mat-label>
+			<mat-select formControlName="completed">
+				<mat-option [value]="true">Да</mat-option>
+				<mat-option [value]="false">Нет</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</form>
+</mat-dialog-content>
+
+<mat-dialog-actions class="dialog-action">
+<button mat-flat-button class="dialog-actions-btn" [mat-dialog-close]="false">No</button>
+<button 
+mat-flat-button 
+class="dialog-actions-btn" 
+[disabled]="form.invalid"
+(click)="submitForm()"
+>
+<mat-icon>add</mat-icon>
+Edit
+</button>
+</mat-dialog-actions>

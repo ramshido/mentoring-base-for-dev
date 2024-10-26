@@ -32,6 +32,7 @@ import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } fr
 })
 export class CreateTodoDialogComponent {
 	public readonly dataSubject = new Subject<ITodo>();
+	public readonly matcher = new MyErrorStateMatcher();
 
 	public readonly form = new FormGroup({
 		id: new FormControl(
@@ -40,23 +41,35 @@ export class CreateTodoDialogComponent {
 		),
 		userId: new FormControl(
 			'',
-			{ nonNullable: true, validators: [Validators.required, Validators.maxLength(1), Validators.pattern('^[0-9]*$'),] },
+			{
+				nonNullable: true,
+				validators: [
+					Validators.required,
+					Validators.maxLength(1),
+					Validators.pattern('^[0-9]*$'),
+				]
+			},
 		),
 		title: new FormControl(
 			'',
-			{ nonNullable: true, validators: [Validators.required, Validators.minLength(3),] },
+			{
+				nonNullable: true,
+				validators: [Validators.required, Validators.minLength(3)]
+
+			},
 		),
 		completed: new FormControl(
 			true,
-			{ nonNullable: true, validators: [Validators.required,] },
+			{
+				nonNullable: true,
+				validators: [Validators.required]
+			},
 		),
 	});
 
-	public readonly matcher = new MyErrorStateMatcher();
-
 	private sendData(data: ITodo): void {
 		console.log(data);
-		
+
 		this.dataSubject.next(data);
 	};
 
