@@ -14,9 +14,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 	selector: 'app-todos-list',
 	standalone: true,
 	imports: [
-		TodosCardComponent, 
-		NgFor, 
-		AsyncPipe, 
+		TodosCardComponent,
+		NgFor,
+		AsyncPipe,
 		MatButtonModule,
 		MatIconModule,
 	],
@@ -69,6 +69,6 @@ export class TodosListComponent {
 				this.createTodo(data);
 			};
 		});
-		
+
 	}
 }

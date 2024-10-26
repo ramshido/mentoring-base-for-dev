@@ -56,12 +56,7 @@
 
 <mat-dialog-actions class="dialog-action">
 	<button mat-flat-button class="dialog-actions-btn" [mat-dialog-close]="false">No</button>
-	<button 
-	mat-flat-button 
-	class="dialog-actions-btn" 
-	[disabled]="form.invalid" 
-	(click)="submitForm()"
-	>
-	Edit
-</button>
+	<button mat-flat-button class="dialog-actions-btn" [disabled]="form.invalid" (click)="submitForm()">
+		Edit
+	</button>
 </mat-dialog-actions>

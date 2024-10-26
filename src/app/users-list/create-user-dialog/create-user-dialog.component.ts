@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
 import { ICreateUser } from '../../interfaces/user.interface';
 import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {FormControls} from '../../utils/Interfaces-to-reactive-form';
+import { FormControls } from '../../utils/Interfaces-to-reactive-form';
 
 @Component({
 	selector: 'app-create-user-dialog',
