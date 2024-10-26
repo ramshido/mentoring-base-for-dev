@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import {
   CreateUserDialogComponent
 } from './create-user-dialog/create-user-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-users-list',
@@ -26,9 +27,10 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersListComponent {
-  private readonly apiUsers = inject(UsersApiService)
-  public readonly userService = inject(UserService)
-  private readonly dialog = inject(MatDialog)
+  private readonly apiUsers = inject(UsersApiService);
+  public readonly userService = inject(UserService);
+  private readonly dialog = inject(MatDialog);
+	private readonly _snackBar = inject(MatSnackBar);
 
   constructor() {
     this.apiUsers.getUsers().subscribe((response: IUser[]) => {
@@ -38,14 +40,23 @@ export class UsersListComponent {
 
   public deleteUser(id: number): void {
     this.userService.deleteUser(id);
+		this._snackBar.open('User deleted', 'Ok').afterDismissed().subscribe(() => {
+			console.log('The snackbar was dismissed');
+		});
   };
 
   public createUser(user: ICreateUser): void {
     this.userService.createUser(user);
+		this._snackBar.open('User created', 'Ok').afterDismissed().subscribe(() => {
+			console.log('The snackbar was dismissed');
+		});
   };
 
   public editUser(formDialogValue: IUser): void {
     this.userService.editUser(formDialogValue);
+		this._snackBar.open('User edited', 'Ok').afterDismissed().subscribe(() => {
+			console.log('The snackbar was dismissed');
+		});
   };
 
   public openDialog(): void {

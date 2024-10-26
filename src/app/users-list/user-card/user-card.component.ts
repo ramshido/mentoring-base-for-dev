@@ -2,7 +2,7 @@ import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { IUser } from '../../interfaces/user.interface';
 import { MatDialog } from '@angular/material/dialog';
 import {
-  EditUserDialogComponent
+	EditUserDialogComponent
 } from '../edit-user-dialog/edit-user-dialog.component';
 
 @Component({
@@ -13,7 +13,7 @@ import {
 	styleUrl: './user-card.component.scss'
 })
 export class UserCardComponent {
-	private readonly dialog = inject(MatDialog)
+	private readonly dialog = inject(MatDialog);
 
 	@Input({ required: true })
 	public user!: IUser;
@@ -33,11 +33,11 @@ export class UserCardComponent {
 			width: '600px',
 			data: { user: this.user },
 		})
-		.afterClosed()
-		.subscribe((editedResult: IUser) => {
-			if (editedResult) {
-				this.editUser.emit(editedResult);
-			}
-		});
+			.afterClosed()
+			.subscribe((editedResult: IUser) => {
+				if (editedResult) {
+					this.editUser.emit(editedResult);
+				}
+			});
 	}
 }

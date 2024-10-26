@@ -8,6 +8,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { CreateTodoDialogComponent } from "./create-todo-dialog/create-todo-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
 	selector: 'app-todos-list',
@@ -27,6 +28,7 @@ export class TodosListComponent {
 	private readonly todosApiService = inject(TodosApiService);
 	public readonly todoService = inject(TodosService);
 	private readonly dialog = inject(MatDialog);
+	private readonly _snackBar = inject(MatSnackBar);
 
 	constructor() {
 		this.todosApiService.getTodos().subscribe((response: ITodo[]) => {
@@ -36,11 +38,24 @@ export class TodosListComponent {
 
 	public deleteTodo(id: number): void {
 		this.todoService.deleteTodo(id);
+		this._snackBar.open('Todo deleted', 'Ok').afterDismissed().subscribe(() => {
+			console.log('The snackbar was dismissed');
+		});
 	};
 
 	public createTodo(todo: ITodo): void {
 		this.todoService.createTodo(todo);
+		this._snackBar.open('Todo created', 'Ok').afterDismissed().subscribe(() => {
+			console.log('The snackbar was dismissed');
+		});
 	};
+
+	public editTodo(todo: ITodo) {
+		this.todoService.editTodo(todo);
+		this._snackBar.open('Todo edited', 'Ok').afterDismissed().subscribe(() => {
+			console.log('The snackbar was dismissed');
+		});
+	}
 
 	public openDialog(): void {
 		const dialogRef = this.dialog.open(CreateTodoDialogComponent, {

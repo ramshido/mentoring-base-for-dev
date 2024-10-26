@@ -9,7 +9,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { ITodo } from '../../interfaces/todo.interface';
 import { Subject } from 'rxjs';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
+import {
+	MatDialogActions,
+	MatDialogClose,
+	MatDialogContent,
+	MatDialogTitle
+} from '@angular/material/dialog';
 
 @Component({
 	selector: 'app-create-todo-dialog',
@@ -68,8 +73,6 @@ export class CreateTodoDialogComponent {
 	});
 
 	private sendData(data: ITodo): void {
-		console.log(data);
-
 		this.dataSubject.next(data);
 	};
 

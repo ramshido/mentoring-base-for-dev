@@ -226,3 +226,7 @@ h6 {
 .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after {
 	border-bottom-color: #31cca5 !important;
 }
+
+.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+	color: #31cca5 !important;
+}
