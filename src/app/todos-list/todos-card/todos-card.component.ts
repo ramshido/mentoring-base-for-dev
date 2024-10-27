@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import {
 	EditTodoDialogComponent
 } from '../edit-todo-dialog/edit-todo-dialog.component';
+import { DeleteTodoDialogComponent } from '../delete-todo-dialog/delete-todo-dialog.component';
 
 @Component({
 	selector: 'app-todos-card',
@@ -25,7 +26,13 @@ export class TodosCardComponent {
 	public readonly editTodo = new EventEmitter<ITodo>();
 
 	public onDeleteTodo(id: number): void {
-		this.deleteTodo.emit(id);
+		this.dialog.open(DeleteTodoDialogComponent)
+		.afterClosed()
+		.subscribe((deleteResult: boolean) => {
+			if (deleteResult) {
+				this.deleteTodo.emit(id);
+			}
+		});
 	};
 
 	public openEditDialog(): void {
