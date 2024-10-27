@@ -230,3 +230,19 @@ h6 {
 .mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
 	color: #31cca5 !important;
 }
+
+.confirm-action-dialog {
+	&__accent {
+		text-transform: uppercase;
+		color: #f0ba4e;
+	}
+}
+
+.confirm-action-buttons {
+	justify-content: space-around !important;
+	&__btn {
+		width: 200px;
+		background-color: #31cca5 !important;
+		margin-bottom: 10px;
+	}
+}

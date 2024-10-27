@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import {
 	EditUserDialogComponent
 } from '../edit-user-dialog/edit-user-dialog.component';
+import { DeleteUserDialogComponent } from '../delete-user-dialog/delete-user-dialog.component';
 
 @Component({
 	selector: 'app-user-card',
@@ -25,7 +26,13 @@ export class UserCardComponent {
 	public readonly editUser = new EventEmitter<IUser>();
 
 	public onDelete(userId: number) {
-		this.deleteUser.emit(userId);
+		this.dialog.open(DeleteUserDialogComponent)
+		.afterClosed()
+		.subscribe((deleteResult: boolean) => {
+			if (deleteResult) {
+				this.deleteUser.emit(userId);
+			}
+		});
 	};
 
 	public openEditDialog(): void {
