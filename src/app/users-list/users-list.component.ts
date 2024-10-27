@@ -41,21 +41,18 @@ export class UsersListComponent {
 	public deleteUser(id: number): void {
 		this.userService.deleteUser(id);
 		this._snackBar.open('User deleted', 'Ok').afterDismissed().subscribe(() => {
-			console.log('The snackbar was dismissed');
 		});
 	};
 
 	public createUser(user: ICreateUser): void {
 		this.userService.createUser(user);
 		this._snackBar.open('User created', 'Ok').afterDismissed().subscribe(() => {
-			console.log('The snackbar was dismissed');
 		});
 	};
 
 	public editUser(formDialogValue: IUser): void {
 		this.userService.editUser(formDialogValue);
 		this._snackBar.open('User edited', 'Ok').afterDismissed().subscribe(() => {
-			console.log('The snackbar was dismissed');
 		});
 	};
 
