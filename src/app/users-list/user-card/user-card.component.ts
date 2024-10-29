@@ -5,11 +5,14 @@ import {
 	EditUserDialogComponent
 } from '../edit-user-dialog/edit-user-dialog.component';
 import { DeleteUserDialogComponent } from '../delete-user-dialog/delete-user-dialog.component';
+import { DashesDeletePipe } from '../../pipes/dashes-delete.pipe';
 
 @Component({
 	selector: 'app-user-card',
 	standalone: true,
-	imports: [],
+	imports: [
+		DashesDeletePipe
+	],
 	templateUrl: './user-card.component.html',
 	styleUrl: './user-card.component.scss'
 })
@@ -27,12 +30,12 @@ export class UserCardComponent {
 
 	public onDelete(userId: number) {
 		this.dialog.open(DeleteUserDialogComponent)
-		.afterClosed()
-		.subscribe((deleteResult: boolean) => {
-			if (deleteResult) {
-				this.deleteUser.emit(userId);
-			}
-		});
+			.afterClosed()
+			.subscribe((deleteResult: boolean) => {
+				if (deleteResult) {
+					this.deleteUser.emit(userId);
+				}
+			});
 	};
 
 	public openEditDialog(): void {

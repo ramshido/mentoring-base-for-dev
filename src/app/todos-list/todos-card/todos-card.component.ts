@@ -5,11 +5,14 @@ import {
 	EditTodoDialogComponent
 } from '../edit-todo-dialog/edit-todo-dialog.component';
 import { DeleteTodoDialogComponent } from '../delete-todo-dialog/delete-todo-dialog.component';
+import { CharacterLimiterPipe } from '../../pipes/character-limiter.pipe';
 
 @Component({
 	selector: 'app-todos-card',
 	standalone: true,
-	imports: [],
+	imports: [
+		CharacterLimiterPipe
+	],
 	templateUrl: './todos-card.component.html',
 	styleUrl: './todos-card.component.scss'
 })

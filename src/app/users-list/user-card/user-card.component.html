@@ -2,6 +2,7 @@
 <p>{{ user.email }}</p>
 <p>{{ user.website }}</p>
 <p>{{ user.company.name }}</p>
+<p>{{ user.phone | dashesDelete}}</p>
 <div class="btn-wrapper">
 	<button class="cards-btn" (click)="onDelete(user.id)">delete</button>
 	<button class="cards-btn" (click)="openEditDialog()">Edit</button>
