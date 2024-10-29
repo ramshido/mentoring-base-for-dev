@@ -11,6 +11,7 @@ import {
 	CreateUserDialogComponent
 } from './create-user-dialog/create-user-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ShadowsDirective } from '../directives/shadows.directive';
 
 @Component({
 	selector: 'app-users-list',
@@ -20,7 +21,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 		NgFor,
 		AsyncPipe,
 		MatButtonModule,
-		MatIconModule
+		MatIconModule,
+		ShadowsDirective
 	],
 	templateUrl: './users-list.component.html',
 	styleUrl: './users-list.component.scss',

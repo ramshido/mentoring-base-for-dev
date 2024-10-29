@@ -1,6 +1,7 @@
 import { DatePipe, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
+import { BackgroundColorChangeDirective } from './directives/background-color-change.directive';
 
 @Component({
 	selector: 'app-root',
@@ -10,7 +11,8 @@ import { RouterOutlet, RouterLink } from '@angular/router';
 		RouterLink, 
 		NgFor, 
 		NgIf,
-		DatePipe
+		DatePipe,
+		BackgroundColorChangeDirective
 	],
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.scss'

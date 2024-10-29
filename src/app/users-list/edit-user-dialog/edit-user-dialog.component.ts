@@ -7,6 +7,7 @@ import { NgIf } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @Component({
 	selector: 'app-edit-user-dialog',
@@ -21,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
 		MatFormFieldModule,
 		MatInputModule,
 		MatButtonModule,
+		MatTooltipModule
 	],
 	templateUrl: './edit-user-dialog.component.html',
 	styleUrl: './edit-user-dialog.component.scss'
