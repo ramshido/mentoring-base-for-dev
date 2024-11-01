@@ -17,7 +17,8 @@ import { CreateUserDialogComponent } from './create-user-dialog/create-user-dial
 		NgFor,
 		AsyncPipe,
 		MatButtonModule,
-		MatIconModule],
+		MatIconModule
+	],
 	templateUrl: './users-list.component.html',
 	styleUrl: './users-list.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush
@@ -49,7 +50,6 @@ export class UsersListComponent {
 	public openDialog(): void {
 		const dialogRef = this.dialog.open(CreateUserDialogComponent, {
 			width: '600px',
-			height: 'normal',
 		});
 
 		const dialogComponentInstance = dialogRef.componentInstance;

@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>{{(data.isEdit ? "Изменить данные todo: " + data.todo.title : "Создать нового пользователя")}}
+</h2>
+	<mat-dialog-content>
+		<form id="form" [formGroup]="form">
+			<p class="dialog-label">ТЕКСТ ЗАДАЧИ:</p>
+			<mat-form-field class="dialog-form-field">
+				<mat-label>Текст</mat-label>
+				<input type="text" formControlName="title" matInput>
+			</mat-form-field>
+	
+			<p class="dialog-label">АВТОР ЗАДАЧИ</p>
+			<mat-form-field class="dialog-form-field">
+				<mat-label>Напишите число</mat-label>
+				<input type="text" formControlName="userId" matInput>
+			</mat-form-field>
+	
+			<p class="dialog-label">ЗАДАЧА ЗАВЕРШЕНА:</p>
+			<mat-form-field class="dialog-form-field">
+				<mat-label>Да или Нет</mat-label>
+				<input type="text" formControlName="completed" matInput [errorStateMatcher]="matcher">
+				<mat-error
+					*ngIf="form.controls['completed'].hasError('invalidCompleted') && !form.controls['completed'].hasError('required')">
+					Введите только - Да или Нет
+				</mat-error>
+				<mat-error *ngIf="form.controls['completed'].hasError('required')">
+					Поле не заполнено
+				</mat-error>
+			</mat-form-field>
+		</form>
+	</mat-dialog-content>
+	<mat-dialog-actions class="dialog-action">
+		<button class="dialog-actions-btn" mat-raised-button type="submit" [disabled]="form.invalid" (click)="submitForm()">
+			<mat-icon>add</mat-icon>
+			{{(data.isEdit ? "Сохранить" : "Создать")}}
+		</button>
+	</mat-dialog-actions>

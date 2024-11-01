@@ -1,7 +1,10 @@
 <h1>Компонент списка Todos</h1>
-<app-create-todo-form (createTodo)="createTodo($event)"></app-create-todo-form>
 <div class="wrapper">
 	<div class="todos-cards" *ngFor="let todo of todoService.todos$ | async">
-		<app-todos-card [todo]="todo" (deleteTodo)="deleteTodo($event)"></app-todos-card>
+		<app-todos-card [todo]="todo" (deleteTodo)="deleteTodo($event)" (editTodo)="openDialog($event)"></app-todos-card>
 	</div>
 </div>
+
+<button mat-fab class="create-dialog-btn" (click)="openDialog()">
+	<mat-icon>add</mat-icon>
+</button>

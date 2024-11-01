@@ -15,6 +15,9 @@ export class TodosCardComponent {
 	@Output()
 	public readonly deleteTodo = new EventEmitter<number>();
 
+	@Output()
+	public readonly editTodo = new EventEmitter<ITodo>();
+
 	public onDeleteTodo(id: number) {
 		this.deleteTodo.emit(id);
 	};
