@@ -1,16 +1,16 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
 import { UserService } from '../services/user.service';
-import { map } from 'rxjs';
+// import { map } from 'rxjs';
 
-const getAsync = (): Promise<boolean> => {
-	// для ассинхронных запросов
-	return new Promise((resolve, reject) => {
-		setTimeout(() => {
-			resolve(true);
-		}, 2000);
-	});
-};
+// const getAsync = (): Promise<boolean> => {
+// 	// для ассинхронных запросов
+// 	return new Promise((resolve, reject) => {
+// 		setTimeout(() => {
+// 			resolve(true);
+// 		}, 2000);
+// 	});
+// };
 
 // const userService = inject(UserService);
 
