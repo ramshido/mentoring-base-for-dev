@@ -8,7 +8,7 @@
 				<li class="button" (click)="isAboutUs = !isAboutUs">Скрыть - О нас</li>
 			</ul>
 			<div class="header__btn-wrapper">
-				<button class="button" routerLink="/users">Admin</button>
+				<button class="button" routerLink="/users">User</button>
 				<button class="button" routerLink="/todos">Todos</button>
 			</div>
 			<ul class="header__right">
@@ -43,5 +43,10 @@
 		</nav>
 	</div>
 </div>
+<div class="admin-user-role__wrapper">
+  <button class="admin-user-role__btn" (click)="userService.loginAsAdmin()">Войти как Admin</button>
+  <button class="admin-user-role__btn" (click)="userService.loginAsUser()">Войти как User</button>
+</div>
+
 
 <router-outlet></router-outlet>
