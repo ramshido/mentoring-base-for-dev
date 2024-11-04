@@ -2,11 +2,11 @@ import { AsyncPipe, DatePipe, NgFor, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { BackgroundColorChangeDirective } from './directives/background-color-change.directive';
-import { UserService } from './services/user.service';
 import { AdminOrUserComponent } from './admin-page/admin-or-user/admin-or-user.component';
 import { MatDialog } from '@angular/material/dialog';
 import { map } from 'rxjs';
 import { IUserOrAdmin } from './interfaces/user-admin.interface';
+import { CheckAdminOrUser } from './services/checkAdminOrUser.service';
 
 @Component({
 	selector: 'app-root',
@@ -25,7 +25,7 @@ import { IUserOrAdmin } from './interfaces/user-admin.interface';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-	public readonly userService = inject(UserService);
+	public readonly userService = inject(CheckAdminOrUser);
 	public readonly title = 'mentoring-first-project';
 	public headerItems = ['Главная', 'Компания'];
 	public isAboutUs = true;

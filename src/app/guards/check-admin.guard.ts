@@ -1,6 +1,6 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
-import { UserService } from '../services/user.service';
+import { CheckAdminOrUser } from '../services/checkAdminOrUser.service';
 // import { map } from 'rxjs';
  
 // const getAsync = (): Promise<boolean> => {
@@ -26,7 +26,7 @@ export const checkAdminGuard: CanActivateFn = (route, state) => {
 	//   return false;
 	// }
 	/////////////////////////////////////////////----Ilnur feature for guards module
-	const userService = inject(UserService);
+	const userService = inject(CheckAdminOrUser);
 	const router = inject(Router);
 
 	if (userService.isAdmin() === true) {
