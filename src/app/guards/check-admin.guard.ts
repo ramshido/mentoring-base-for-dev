@@ -3,8 +3,8 @@ import { inject } from '@angular/core';
 import { CheckAdminOrUser } from '../services/user.service';
 // import { map } from 'rxjs';
  
-// const getAsync = (): Promise<boolean> => {
-// 	// для ассинхронных запросов
+// для ассинхронных запросов
+// const getAsync = (): Promise<boolean> => { 	
 // 	return new Promise((resolve, reject) => {
 // 		setTimeout(() => {
 // 			resolve(true);

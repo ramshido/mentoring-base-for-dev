@@ -8,11 +8,11 @@ import { IUserOrAdmin } from "../interfaces/user-admin.interface";
 export class CheckAdminOrUser {
 	private userOrAdminSubject$ = new BehaviorSubject<IUserOrAdmin | null>(null);
 
-	private user = {
+	private user: IUserOrAdmin = {
 		name: 'Vasya',
 		email: 'vXqFP@example.com',
 		isAdmin: false,
-	}
+	};
 
 	public userOrAdmin$ = this.userOrAdminSubject$.asObservable();
 
@@ -21,23 +21,23 @@ export class CheckAdminOrUser {
 			...this.user,
 			isAdmin: true
 		});
-	}
+	};
 
 	public loginAsUser(): void {
 		this.userOrAdminSubject$.next(this.user);
-	}
+	};
 
 	public isAdmin(): boolean {
-		const value = this.userOrAdminSubject$.value;
+		const value = this.userOrAdminSubject$.value?.isAdmin;
 
 		if (value != null) {
-			return value.isAdmin;
+			return value;
 		}
 		return false
 		// Или какое-то другое значение, когда это { user: null }
-	}
+	};
 
 	public logout(): void {
 		this.userOrAdminSubject$.next(null);
-	}
+	};
 }
