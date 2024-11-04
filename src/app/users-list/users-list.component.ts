@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { UserCardComponent } from './user-card/user-card.component';
 import { UsersApiService } from '../services/user-api.service';
 import { AsyncPipe, NgFor } from '@angular/common';
-import { UserService } from '../services/user.service';
+import { UserService } from '../services/users.service';
 import { ICreateUser, IUser } from '../interfaces/user.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';

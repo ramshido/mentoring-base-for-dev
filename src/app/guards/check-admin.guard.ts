@@ -1,6 +1,6 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
-import { CheckAdminOrUser } from '../services/checkAdminOrUser.service';
+import { CheckAdminOrUser } from '../services/user.service';
 // import { map } from 'rxjs';
  
 // const getAsync = (): Promise<boolean> => {

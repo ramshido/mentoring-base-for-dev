@@ -6,7 +6,7 @@ import { AdminOrUserComponent } from './admin-page/admin-or-user/admin-or-user.c
 import { MatDialog } from '@angular/material/dialog';
 import { map } from 'rxjs';
 import { IUserOrAdmin } from './interfaces/user-admin.interface';
-import { CheckAdminOrUser } from './services/checkAdminOrUser.service';
+import { CheckAdminOrUser } from './services/user.service';
 
 @Component({
 	selector: 'app-root',
@@ -37,7 +37,7 @@ export class AppComponent {
 	public isShowAdminBtn: boolean = false;
 
 	public userRole$ = this.userService.userOrAdmin$.pipe(
-		map((data: IUserOrAdmin | { user: null }) => {
+		map((data: IUserOrAdmin | null ) => {
 			// for (let key in data) {
 			// 	if (key === 'user') {
 			// 		this.status = 'Войти';
@@ -49,7 +49,7 @@ export class AppComponent {
 
 			// или:
 
-			if ('user' in data) {
+			if (data === null) {
 				this.status = 'Войти';
 				this.isShowAdminBtn = false;
 				return true;
