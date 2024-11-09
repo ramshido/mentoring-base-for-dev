@@ -47,13 +47,14 @@
     </nav>
   </div>
 </div>
+
 <div class="admin-user-role__wrapper">
   <button class="admin-user-role__btn" (click)="openDialog()">
     {{ (userRole$ | async) ? 'Войти' : 'Выйти' }}
   </button>
-   <button *ngIf="isShowAdminBtn" class="admin-user-role__btn" routerLink="/admin">Админка</button>
-	
+  <button *ngIf="isShowAdminBtn" class="admin-user-role__btn"
+          routerLink="/admin">Админка
+  </button>
 </div>
-
 
 <router-outlet></router-outlet>

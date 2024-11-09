@@ -34,7 +34,6 @@ export class CheckAdminOrUser {
 			return value;
 		}
 		return false
-		// Или какое-то другое значение, когда это { user: null }
 	};
 
 	public logout(): void {

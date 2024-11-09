@@ -25,30 +25,18 @@ import { CheckAdminOrUser } from './services/user.service';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-	public readonly userService = inject(CheckAdminOrUser);
 	public readonly title = 'mentoring-first-project';
 	public headerItems = ['Главная', 'Компания'];
 	public isAboutUs = true;
 	public today: number = Date.now();
 	private readonly dialog = inject(MatDialog);
-
-	private readonly router = inject(Router)
+	public readonly userService = inject(CheckAdminOrUser);
+	private readonly router = inject(Router);
 	public status: string = '';
 	public isShowAdminBtn: boolean = false;
 
 	public userRole$ = this.userService.userOrAdmin$.pipe(
-		map((data: IUserOrAdmin | null ) => {
-			// for (let key in data) {
-			// 	if (key === 'user') {
-			// 		this.status = 'Войти';
-			// 		return true;
-			// 	}
-			// }
-			// this.status = 'Выйти';
-			// return false;
-
-			// или:
-
+		map((data: IUserOrAdmin | null) => {
 			if (data === null) {
 				this.status = 'Войти';
 				this.isShowAdminBtn = false;
@@ -58,7 +46,7 @@ export class AppComponent {
 				this.isShowAdminBtn = true;
 				return false;
 			}
-		})
+		}),
 	);
 
 	public openDialog(): void {
@@ -76,7 +64,9 @@ export class AppComponent {
 					}
 				});
 		} else if (this.status === 'Выйти') {
-			confirm('Вы точно хотите выйти?') ? (this.userService.logout(), this.router.navigate([''])) : null
+			confirm('Вы точно хотите выйти?')
+				? (this.userService.logout(), this.router.navigate(['']))
+				: null;
 		}
 	}
 }
