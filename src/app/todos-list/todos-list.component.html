@@ -1,10 +1,15 @@
 <h1 class="todos-list-title">Компонент списка Todos</h1>
 <div class="wrapper">
-	<div class="todos-cards" *ngFor="let todo of todoService.todos$ | async">
-		<app-todos-card [todo]="todo" (deleteTodo)="deleteTodo($event)" (editTodo)="editTodo($event)"></app-todos-card>
-	</div>
+  <div class="todos-cards" *ngFor="let todo of todoService.todos$ | async">
+    <app-todos-card
+      [todo]="todo"
+      (deleteTodo)="deleteTodo($event)"
+      (editTodo)="editTodo($event)"
+    >
+    </app-todos-card>
+  </div>
 </div>
 
 <button mat-fab class="create-dialog-btn" (click)="openDialog()">
-	<mat-icon>add</mat-icon>
+  <mat-icon>add</mat-icon>
 </button>
