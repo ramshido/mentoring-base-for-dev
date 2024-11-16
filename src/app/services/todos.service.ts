@@ -14,6 +14,14 @@ export class TodosService {
   private readonly todosApiService = inject(TodosApiService);
   private readonly localStorageTodoKey = 'todos';
 
+  private setDataToLocalStorageTodoSubject(todosData: ITodo[]): void {
+    this.localStorageService.saveDataToLocalStorage<ITodo[]>(
+      this.localStorageTodoKey,
+      todosData
+    );
+    this.todosSubject$.next(todosData);
+  }
+
   public loadTodos() {
     const localStorageTodos = this.localStorageService.getDataFromLocalStorage<ITodo[]>(
       this.localStorageTodoKey
@@ -23,11 +31,7 @@ export class TodosService {
       this.todosSubject$.next(localStorageTodos);
     } else {
       this.todosApiService.getTodos().subscribe((todoData: ITodo[]) => {
-        this.localStorageService.saveDataToLocalStorage<ITodo[]>(
-          this.localStorageTodoKey,
-          todoData.slice(1, 11)
-        );
-        this.todosSubject$.next(todoData.slice(1, 11));
+        this.setDataToLocalStorageTodoSubject(todoData.slice(1, 11));
       });
     }
   }
@@ -36,11 +40,7 @@ export class TodosService {
     const index = this.todosSubject$.value.findIndex(el => el.id === todo.id);
 
     this.todosSubject$.value[index] = todo;
-    this.localStorageService.saveDataToLocalStorage<ITodo[]>(
-      this.localStorageTodoKey,
-      this.todosSubject$.value
-    );
-    this.todosSubject$.next(this.todosSubject$.value);
+    this.setDataToLocalStorageTodoSubject(this.todosSubject$.value);
   }
 
   public createTodo(todo: ITodo): void {
@@ -50,11 +50,7 @@ export class TodosService {
 
     if (todoExisting === undefined) {
       const newTodo = [...this.todosSubject$.value, todo];
-      this.localStorageService.saveDataToLocalStorage<ITodo[]>(
-        this.localStorageTodoKey,
-        newTodo
-      );
-      this.todosSubject$.next(newTodo);
+      this.setDataToLocalStorageTodoSubject(newTodo);
     } else alert('Такой todo уже есть');
   }
 
@@ -63,11 +59,7 @@ export class TodosService {
     const findTodo = this.todosSubject$.value.find(todo => todo.id === id);
 
     if (findTodo) {
-      this.localStorageService.saveDataToLocalStorage<ITodo[]>(
-        this.localStorageTodoKey,
-        newArrayTodos
-      );
-      this.todosSubject$.next(newArrayTodos);
+      this.setDataToLocalStorageTodoSubject(newArrayTodos);
     }
 
     if (!this.todosSubject$.value.length) {

@@ -12,6 +12,15 @@ export class UserService {
   public readonly users$ = this.usersSubject$.asObservable();
   private readonly localStorageService = inject(LocalStorageService);
   private readonly usersApiService = inject(UsersApiService);
+  private readonly localStorageUsersKey = 'users';
+
+  private setDataToLocalStorageUsersSubject(usersData: IUser[]): void {
+    this.localStorageService.saveDataToLocalStorage<IUser[]>(
+      this.localStorageUsersKey,
+      usersData
+    );
+    this.usersSubject$.next(usersData);
+  }
 
   public loadUsers(): void {
     const localStorageUsers =
@@ -21,8 +30,7 @@ export class UserService {
       this.usersSubject$.next(localStorageUsers);
     } else {
       this.usersApiService.getUsers().subscribe((users: IUser[]) => {
-        this.localStorageService.saveDataToLocalStorage<IUser[]>('users', users);
-        this.usersSubject$.next(users);
+        this.setDataToLocalStorageUsersSubject(users);
       });
     }
   }
@@ -31,11 +39,7 @@ export class UserService {
     const index = this.usersSubject$.value.findIndex(el => el.id === user.id);
 
     this.usersSubject$.value[index] = user;
-    this.localStorageService.saveDataToLocalStorage<IUser[]>(
-      'users',
-      this.usersSubject$.value
-    );
-    this.usersSubject$.next(this.usersSubject$.value);
+    this.setDataToLocalStorageUsersSubject(this.usersSubject$.value);
   }
 
   public createUser(user: IUser): void {
@@ -44,8 +48,7 @@ export class UserService {
     );
     if (userExisting === undefined) {
       const newUser = [...this.usersSubject$.value, user];
-      this.localStorageService.saveDataToLocalStorage<IUser[]>('users', newUser);
-      this.usersSubject$.next(newUser);
+      this.setDataToLocalStorageUsersSubject(newUser);
     } else alert('Такой Email уже есть');
   }
 
@@ -54,12 +57,11 @@ export class UserService {
     const findUser = this.usersSubject$.value.find(user => user.id === userId);
 
     if (findUser) {
-      this.localStorageService.saveDataToLocalStorage<IUser[]>('users', newArrayUsers);
-      this.usersSubject$.next(newArrayUsers);
+      this.setDataToLocalStorageUsersSubject(newArrayUsers);
     }
 
     if (!this.usersSubject$.value.length) {
-      this.localStorageService.removeLocalStorage('users');
+      this.localStorageService.removeLocalStorage(this.localStorageUsersKey);
     }
   }
 }
