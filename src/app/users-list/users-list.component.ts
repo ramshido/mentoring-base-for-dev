@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { UserCardComponent } from './user-card/user-card.component';
-import { UsersApiService } from '../services/user-api.service';
 import { AsyncPipe, NgFor } from '@angular/common';
 import { UserService } from '../services/users.service';
 import { ICreateUser, IUser } from '../interfaces/user.interface';
@@ -20,30 +19,29 @@ import { ShadowsDirective } from '../directives/shadows.directive';
     AsyncPipe,
     MatButtonModule,
     MatIconModule,
-    ShadowsDirective,
+    ShadowsDirective
   ],
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersListComponent {
-  private readonly apiUsers = inject(UsersApiService);
   public readonly userService = inject(UserService);
   private readonly dialog = inject(MatDialog);
   private readonly _snackBar = inject(MatSnackBar);
 
   constructor() {
-    this.apiUsers.getUsers().subscribe((response: IUser[]) => {
-      this.userService.setUser(response);
-    });
+    this.userService.loadUsers();
   }
 
   public deleteUser(id: number): void {
-    this.userService.deleteUser(id);
-    this._snackBar
-      .open('User deleted', 'Ok')
-      .afterDismissed()
-      .subscribe(() => {});
+    if (confirm('Вы точно хотите удалить карточку пользователя?')) {
+      this.userService.deleteUser(id);
+      this._snackBar
+        .open('User deleted', 'Ok')
+        .afterDismissed()
+        .subscribe(() => {});
+    }
   }
 
   public createUser(user: ICreateUser): void {
@@ -64,7 +62,7 @@ export class UsersListComponent {
 
   public openDialog(): void {
     const dialogRef = this.dialog.open(CreateUserDialogComponent, {
-      width: '600px',
+      width: '600px'
     });
 
     const dialogComponentInstance = dialogRef.componentInstance;

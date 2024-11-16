@@ -13,31 +13,23 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-todos-list',
   standalone: true,
-  imports: [
-    TodosCardComponent,
-    NgFor,
-    AsyncPipe,
-    MatButtonModule,
-    MatIconModule,
-  ],
+  imports: [TodosCardComponent, NgFor, AsyncPipe, MatButtonModule, MatIconModule],
   templateUrl: './todos-list.component.html',
   styleUrl: './todos-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodosListComponent {
   private readonly todosApiService = inject(TodosApiService);
-  public readonly todoService = inject(TodosService);
+  public readonly todosService = inject(TodosService);
   private readonly dialog = inject(MatDialog);
   private readonly _snackBar = inject(MatSnackBar);
 
   constructor() {
-    this.todosApiService.getTodos().subscribe((response: ITodo[]) => {
-      this.todoService.setTodo(response.slice(1, 11));
-    });
+    this.todosService.loadTodos();
   }
 
   public deleteTodo(id: number): void {
-    this.todoService.deleteTodo(id);
+    this.todosService.deleteTodo(id);
     this._snackBar
       .open('Todo deleted', 'Ok')
       .afterDismissed()
@@ -45,7 +37,7 @@ export class TodosListComponent {
   }
 
   public createTodo(todo: ITodo): void {
-    this.todoService.createTodo(todo);
+    this.todosService.createTodo(todo);
     this._snackBar
       .open('Todo created', 'Ok')
       .afterDismissed()
@@ -53,7 +45,7 @@ export class TodosListComponent {
   }
 
   public editTodo(todo: ITodo) {
-    this.todoService.editTodo(todo);
+    this.todosService.editTodo(todo);
     this._snackBar
       .open('Todo edited', 'Ok')
       .afterDismissed()
@@ -62,7 +54,7 @@ export class TodosListComponent {
 
   public openDialog(): void {
     const dialogRef = this.dialog.open(CreateTodoDialogComponent, {
-      width: '600px',
+      width: '600px'
     });
 
     const dialogComponentInstance = dialogRef.componentInstance;
