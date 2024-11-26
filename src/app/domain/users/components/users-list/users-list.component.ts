@@ -9,6 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { CreateUserDialogComponent } from '../create-user-dialog/create-user-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ShadowsDirective } from '../../../../shared/directives/shadows.directive';
+import { Store } from '@ngrx/store';
+import { selecUsers } from '../../state/users.selectors';
 
 @Component({
   selector: 'app-users-list',
@@ -29,6 +31,8 @@ export class UsersListComponent {
   public readonly userService = inject(UserService);
   private readonly dialog = inject(MatDialog);
   private readonly _snackBar = inject(MatSnackBar);
+	private readonly store = inject(Store);
+	public readonly users$ = this.store.select(selecUsers);
 
   constructor() {
     this.userService.loadUsers();
