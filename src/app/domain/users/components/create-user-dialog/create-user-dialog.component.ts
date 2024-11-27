@@ -62,10 +62,10 @@ export class CreateUserDialogComponent {
 
   private sendData(data: ICreateUser): void {
     this.dataSubject.next(data);
-  }
+  };
 
   public closeDialog(): void {
     this.sendData(this.form.getRawValue());
     this.form.reset();
-  }
+  };
 }

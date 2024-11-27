@@ -7,28 +7,30 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogConfig } from '@angular/material/dialog';
 import { provideStore } from '@ngrx/store';
-import { usersReducer } from './domain/users/state/users.reducers';
+import { usersReducer } from './domain/users/+state/users.reducers';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { todosReducer } from './domain/todos/+state/todos.reducers';
 
 export const appConfig: ApplicationConfig = {
-	providers: [
+  providers: [
     provideRouter(routes),
     provideHttpClient(),
     provideAnimationsAsync(),
     provideAnimationsAsync(),
     {
-        provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-        useValue: {
-            subscriptSizing: 'dynamic',
-        },
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: {
+        subscriptSizing: 'dynamic'
+      }
     },
     {
-        provide: MAT_DIALOG_DEFAULT_OPTIONS,
-        useValue: { autoFocus: false } as MatDialogConfig
+      provide: MAT_DIALOG_DEFAULT_OPTIONS,
+      useValue: { autoFocus: false } as MatDialogConfig
     },
     provideStore({
-        users: usersReducer,
+      users: usersReducer,
+      todos: todosReducer
     }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
-]
+  ]
 };
